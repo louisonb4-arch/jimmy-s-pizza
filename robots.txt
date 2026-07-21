@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /mentions.html
 
-Sitemap: https://jimmys-site.vercel.app/sitemap.xml
+Sitemap: https://jimmy-s-pizza.vercel.app/sitemap.xml
