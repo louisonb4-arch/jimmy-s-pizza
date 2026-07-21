@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jimmy's Pizza — Pizzeria New York Style à Nantes (Gare Nord) · Pizza by the Slice</title>
+<meta name="description" content="Jimmy's Pizza, la première pizzeria New York style de Nantes : pizza à la part, pâte fermentée 72 h. 4 allée du Commandant Charcot, quartier Gare Nord. Sur place, à emporter ou en livraison — 06 25 91 10 65.">
+<link rel="canonical" href="https://jimmys-site.vercel.app/">
+<meta name="geo.region" content="FR-44">
+<meta name="geo.placename" content="Nantes">
+<meta name="geo.position" content="47.21772;-1.54386">
+<meta name="ICBM" content="47.21772, -1.54386">
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Jimmy's Pizza Slices">
+<meta property="og:title" content="Jimmy's Pizza — Pizzeria New York Style à Nantes">
+<meta property="og:description" content="Pizza by the slice, pâte fermentée 72 h. 4 allée du Commandant Charcot, Nantes. Sur place, à emporter, en livraison.">
+<meta property="og:url" content="https://jimmys-site.vercel.app/">
+<meta property="og:image" content="https://jimmys-site.vercel.app/assets/facade.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jimmy's Pizza — Pizzeria New York Style à Nantes">
+<meta name="twitter:description" content="Pizza by the slice, pâte 72 h, quartier Gare Nord. Sur place, à emporter, en livraison.">
+<meta name="twitter:image" content="https://jimmys-site.vercel.app/assets/facade.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E8451F'/%3E%3Ctext x='50' y='72' font-size='62' text-anchor='middle'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "@id": "https://jimmys-site.vercel.app/#restaurant",
+  "name": "Jimmy's Pizza",
+  "alternateName": "Jimmy's Pizza Slices",
+  "description": "Première pizzeria New York style de Nantes : pizza à la part (by the slice), pâte artisanale fermentée 72 heures. Sur place, à emporter, en livraison.",
+  "url": "https://jimmys-site.vercel.app/",
+  "image": "https://jimmys-site.vercel.app/assets/facade.jpg",
+  "telephone": "+33625911065",
+  "email": "yannick@jimmyspizza.fr",
+  "servesCuisine": ["Pizza", "Pizza new-yorkaise", "Américaine"],
+  "priceRange": "€",
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Espèces, Carte bancaire, Apple Pay, Tickets restaurant",
+  "hasMenu": "https://cdn.website.dish.co/media/ba/8f/10050138/Menu-1.pdf",
+  "acceptsReservations": "False",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4 allée du Commandant Charcot",
+    "addressLocality": "Nantes",
+    "postalCode": "44000",
+    "addressRegion": "Pays de la Loire",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 47.21772,
+    "longitude": -1.54386
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "12:00", "closes": "14:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "12:00", "closes": "14:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "18:30", "closes": "21:45" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/jimmyspizzanantes/"
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tomate:#E8451F;
+  --tomate-fonce:#C93312;
+  --creme:#F3EAD5;
+  --creme-2:#EDE2C8;
+  --encre:#1C1510;
+  --menthe:#8FCDC0;
+  --beige:#CFC5AE;
+  --grid:rgba(28,21,16,.08);
+  --frame:26px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Fraunces',serif;
+  background:var(--creme);
+  color:var(--encre);
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+::selection{background:var(--tomate);color:var(--creme)}
+
+.groovy{
+  font-family:'Corben',serif;
+  font-weight:700;
+  letter-spacing:-.01em;
+  line-height:1.04;
+}
+.label{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.25,.1,.25,1),transform .8s cubic-bezier(.25,.1,.25,1)}
+.rv.on{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* ---------- intro ---------- */
+#intro{
+  position:fixed;inset:0;z-index:100;
+  background:var(--tomate);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:6px solid var(--encre);
+}
+body.intro-lock{overflow:hidden}
+.intro-logo{color:var(--creme);text-align:center;position:relative}
+.intro-line{overflow:hidden;display:block}
+.intro-line>span{display:block;transform:translateY(110%);opacity:0}
+.intro-play .intro-line>span{animation:introRise 1s cubic-bezier(.22,1,.36,1) forwards}
+.intro-pizza>span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(.8rem,1.6vw,1rem);letter-spacing:.34em;text-transform:uppercase}
+.intro-play .intro-pizza>span{animation-delay:.15s}
+.intro-jimmys>span{font-family:'Corben',serif;font-weight:700;font-size:clamp(4.2rem,13vw,9.5rem);line-height:1.18;padding-bottom:.06em;letter-spacing:-.015em}
+.intro-play .intro-jimmys>span{animation-delay:.32s}
+.intro-slices>span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(.8rem,1.6vw,1rem);letter-spacing:.34em;text-transform:uppercase}
+.intro-play .intro-slices>span{animation-delay:.5s}
+@keyframes introRise{to{transform:translateY(0);opacity:1}}
+.intro-star{
+  display:inline-block;margin-left:.18em;color:var(--menthe);
+  font-size:.32em;vertical-align:super;
+  opacity:0;transform:scale(.4) rotate(-90deg);
+}
+.intro-play .intro-star{animation:starPop .7s cubic-bezier(.22,1,.36,1) .85s forwards}
+@keyframes starPop{to{opacity:1;transform:scale(1) rotate(0deg)}}
+.intro-baseline{
+  position:absolute;left:50%;bottom:8vh;transform:translateX(-50%);
+  color:var(--creme);opacity:0;
+  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.72rem;
+  letter-spacing:.28em;text-transform:uppercase;white-space:nowrap;
+}
+.intro-play .intro-baseline{animation:baseFade .8s ease .95s forwards}
+@keyframes baseFade{to{opacity:.9}}
+#intro.intro-out{
+  animation:introLift .9s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes introLift{
+  0%{transform:translateY(0);border-radius:0}
+  100%{transform:translateY(-102%);border-radius:0 0 64px 64px}
+}
+@media (prefers-reduced-motion: reduce){
+  #intro{display:none}
+}
+
+/* ---------- header ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+  background:var(--tomate);
+  color:var(--creme);
+  border-bottom:3px solid var(--encre);
+}
+.logo-wrap{display:flex;align-items:baseline;gap:.45rem;text-decoration:none}
+.logo-main{font-size:1.7rem}
+.logo-sub{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;opacity:.9}
+nav{display:flex;gap:2rem;align-items:center}
+nav a.nl{
+  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.85rem;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  position:relative;
+}
+nav a.nl::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:100%;height:2px;
+  background:var(--creme);transform:scaleX(0);transform-origin:left;
+  transition:transform .35s cubic-bezier(.25,.1,.25,1);
+}
+nav a.nl:hover::after{transform:scaleX(1)}
+.tel-btn{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;
+  text-decoration:none;letter-spacing:.04em;
+  background:var(--creme);color:var(--tomate);
+  padding:.55rem 1.1rem;border-radius:999px;border:2px solid var(--encre);
+  box-shadow:3px 3px 0 var(--encre);
+  transition:transform .25s ease,box-shadow .25s ease;
+  white-space:nowrap;
+}
+.tel-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--encre)}
+.burger{display:none}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;
+  background:var(--tomate);
+  color:var(--creme);
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  align-items:stretch;
+  padding:110px 5vw 0;
+  gap:3rem;
+  position:relative;
+}
+.hero-txt{display:flex;flex-direction:column;justify-content:center;padding-bottom:6rem}
+.hero-kicker{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.8rem}
+.hero-kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--creme);animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+h1.groovy{font-size:clamp(2.5rem,5vw,4.6rem);margin-bottom:1.6rem}
+h1 .slice-w{display:inline-block;font-style:normal;transform:skewX(-7deg);color:var(--creme)}
+.hero-sub{font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:400;max-width:34rem;opacity:.94}
+.hero-ctas{display:flex;gap:1rem;margin-top:2.4rem;flex-wrap:wrap}
+.btn{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;
+  letter-spacing:.05em;text-transform:uppercase;text-decoration:none;
+  padding:.95rem 1.8rem;border-radius:999px;border:2px solid var(--encre);
+  transition:transform .25s ease,box-shadow .25s ease;
+  display:inline-block;
+}
+.btn-creme{background:var(--creme);color:var(--encre);box-shadow:4px 4px 0 var(--encre)}
+.btn-creme:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--encre)}
+.btn-ghost{background:transparent;color:var(--creme);border-color:var(--creme);box-shadow:none}
+.btn-ghost:hover{background:rgba(243,234,213,.12)}
+.hero-visu{position:relative;display:flex;align-items:flex-end;justify-content:center}
+.devanture{
+  width:min(100%,430px);
+  border:var(--frame) solid var(--creme);
+  border-bottom:none;
+  border-radius:48px 48px 0 0;
+  overflow:hidden;
+  background:var(--creme);
+  transform:translateY(0);
+}
+.devanture img{width:100%;height:100%;object-fit:cover}
+.hero-badge{
+  position:absolute;top:6%;left:-8px;
+  background:var(--encre);color:var(--creme);
+  padding:1.05rem 1.15rem .95rem;
+  border-radius:50%;
+  width:118px;height:118px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.62rem;
+  letter-spacing:.14em;text-transform:uppercase;line-height:1.5;
+  transform:rotate(-9deg);
+  animation:floaty 5s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:rotate(-9deg) translateY(0)}50%{transform:rotate(-9deg) translateY(-9px)}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  background:var(--encre);color:var(--creme);
+  overflow:hidden;white-space:nowrap;
+  border-top:3px solid var(--encre);border-bottom:3px solid var(--encre);
+  padding:.85rem 0;
+}
+.marquee-inner{display:inline-block;animation:scrolltxt 26s linear infinite}
+.marquee span{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.82rem;
+  letter-spacing:.28em;text-transform:uppercase;margin:0 1.6rem;
+}
+.marquee .st{color:var(--menthe)}
+@keyframes scrolltxt{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- damier ---------- */
+.damier{
+  height:34px;
+  background:
+    repeating-conic-gradient(var(--beige) 0% 25%, var(--creme) 0% 50%)
+    0 0 / 34px 34px;
+}
+.damier.mint{
+  background:
+    repeating-conic-gradient(var(--menthe) 0% 25%, var(--creme) 0% 50%)
+    0 0 / 34px 34px;
+}
+
+/* ---------- concept ---------- */
+.concept{
+  padding:7rem 5vw 6rem;
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--creme);
+  background-size:28px 28px,28px 28px,auto;
+}
+.concept-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:5rem;align-items:center;
+}
+.polaroid{
+  background:#fff;
+  padding:14px 14px 58px;
+  border:2px solid var(--encre);
+  box-shadow:8px 8px 0 rgba(28,21,16,.16);
+  transform:rotate(-2.5deg);
+  position:relative;
+  max-width:420px;
+  margin:0 auto;
+}
+.polaroid img{border:1px solid rgba(28,21,16,.15)}
+.polaroid figcaption{
+  position:absolute;bottom:16px;left:0;right:0;text-align:center;
+  font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:500;color:rgba(28,21,16,.7);
+}
+.concept h2{font-size:clamp(2.1rem,3.8vw,3.4rem);margin:1.2rem 0 1.6rem;color:var(--tomate)}
+.concept .label{color:var(--tomate)}
+.concept p{font-size:1.08rem;max-width:32rem;margin-bottom:1.1rem}
+.stats{display:flex;gap:0;margin-top:2.6rem;border:2px solid var(--encre);border-radius:18px;overflow:hidden;background:var(--creme);max-width:34rem}
+.stat{flex:1;padding:1.2rem 1rem;text-align:center;border-right:2px solid var(--encre)}
+.stat:last-child{border-right:none}
+.stat b{display:block;font-size:2rem;font-family:'Corben',serif;font-weight:700;color:var(--tomate);line-height:1.1}
+.stat span{font-family:'Space Grotesk',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+
+/* ---------- menu ---------- */
+.menu-sec{
+  background:var(--tomate);
+  padding:6.5rem 5vw 7rem;
+  color:var(--creme);
+}
+.menu-head{max-width:1200px;margin:0 auto 3.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.menu-head h2{font-size:clamp(2.8rem,5.5vw,5rem)}
+.menu-head .note{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85;text-align:right}
+.menu-board{
+  max-width:1200px;margin:0 auto;
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--creme);
+  background-size:26px 26px,26px 26px,auto;
+  color:var(--encre);
+  border:3px solid var(--encre);
+  border-radius:36px;
+  padding:clamp(1.6rem,4vw,3.5rem);
+  box-shadow:10px 10px 0 rgba(0,0,0,.18);
+}
+.menu-cat{margin-bottom:3rem}
+.menu-cat:last-child{margin-bottom:0}
+.cat-title{
+  display:inline-block;
+  background:var(--tomate);color:var(--creme);
+  font-family:'Corben',serif;font-weight:700;
+  font-size:1.5rem;
+  padding:.35rem 1.3rem .45rem;
+  border-radius:999px;border:2px solid var(--encre);
+  margin-bottom:1.6rem;
+  transform:rotate(-1.2deg);
+}
+.pizzas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.pz{
+  background:rgba(255,255,255,.55);
+  border:2px solid var(--encre);border-radius:18px;
+  padding:1.2rem 1.3rem 1.1rem;
+  display:flex;flex-direction:column;
+  transition:transform .3s cubic-bezier(.25,.1,.25,1),box-shadow .3s cubic-bezier(.25,.1,.25,1);
+}
+.pz:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--encre)}
+.pz-top{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;margin-bottom:.4rem}
+.pz h4{font-family:'Corben',serif;font-weight:700;font-size:1.28rem;line-height:1.1}
+.pz .prix{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:var(--tomate);white-space:nowrap}
+.pz p{font-size:.92rem;opacity:.85;line-height:1.45}
+.tag-v{
+  display:inline-block;margin-top:.65rem;align-self:flex-start;
+  font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--menthe);border:1.5px solid var(--encre);border-radius:999px;
+  padding:.18rem .6rem;
+}
+.full-pizza{
+  margin-top:1.4rem;
+  border:3px solid var(--encre);border-radius:20px;
+  background:#fff;
+  padding:1.3rem 1.6rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+}
+.full-pizza h4{font-family:'Corben',serif;font-weight:700;font-size:1.5rem}
+.full-pizza .fp-sub{font-family:'Space Grotesk',sans-serif;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.fp-prices{display:flex;gap:2.2rem}
+.fp-prices div{text-align:right}
+.fp-prices b{font-size:1.5rem;font-family:'Corben',serif;font-weight:700;color:var(--tomate)}
+.fp-prices span{display:block;font-family:'Space Grotesk',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.small-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.sm-list{background:rgba(255,255,255,.55);border:2px solid var(--encre);border-radius:18px;padding:1.2rem 1.3rem}
+.sm-list h4{font-family:'Corben',serif;font-weight:700;font-size:1.15rem;margin-bottom:.7rem;color:var(--tomate)}
+.sm-list ul{list-style:none}
+.sm-list li{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;padding:.28rem 0;border-bottom:1px dashed rgba(28,21,16,.25)}
+.sm-list li:last-child{border-bottom:none}
+.sm-list li em{font-style:normal;opacity:.75;font-size:.85rem}
+.sm-list li b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.88rem;white-space:nowrap}
+.sm-list h4 em{font-family:'Space Grotesk',sans-serif;font-style:normal;font-weight:500;letter-spacing:.06em}
+.menu-cta{max-width:1200px;margin:2.5rem auto 0;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+
+/* ---------- lieu / photos ---------- */
+.lieu{padding:7rem 5vw 5rem;background:var(--creme)}
+.lieu-head{max-width:1200px;margin:0 auto 3.5rem}
+.lieu-head .label{color:var(--tomate)}
+.lieu-head h2{font-size:clamp(2.1rem,3.8vw,3.4rem);margin-top:1rem;max-width:26ch}
+.lieu-head h2 em{color:var(--tomate);font-style:normal;display:inline-block;transform:skewX(-7deg)}
+.photo-row{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;
+  align-items:start;
+}
+.photo-row .polaroid{max-width:none;margin:0}
+.photo-row .polaroid:nth-child(1){transform:rotate(-2deg)}
+.photo-row .polaroid:nth-child(2){transform:rotate(1.6deg) translateY(26px)}
+.photo-row .polaroid:nth-child(3){transform:rotate(-1.2deg)}
+
+/* ---------- infos / letterboard ---------- */
+.infos{padding:6.5rem 5vw 7rem;background:var(--creme-2)}
+.infos-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start}
+.letterboard{
+  background:#161311;
+  border:14px solid #E4D5B5;
+  border-radius:6px;
+  box-shadow:0 18px 44px rgba(28,21,16,.28);
+  padding:2.4rem 2rem;
+  color:#FDFAF2;
+  background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.045) 0 1px,transparent 1px 7px);
+  transform:rotate(-1deg);
+}
+.letterboard .lb-title{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;font-size:.85rem;text-align:center;margin-bottom:1.8rem;
+}
+.lb-rows{font-family:'Space Grotesk',sans-serif;font-size:.92rem;letter-spacing:.14em;text-transform:uppercase}
+.lb-rows .row{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.lb-rows .row:last-child{border-bottom:none}
+.lb-rows .ferme{color:var(--tomate);font-weight:700}
+.lb-star{color:var(--menthe)}
+.infos-txt h2{font-size:clamp(2.2rem,4vw,3.4rem);margin:1rem 0 2rem}
+.infos-txt .label{color:var(--tomate)}
+.info-item{display:flex;gap:1.1rem;padding:1.15rem 0;border-top:2px solid var(--encre);align-items:baseline}
+.info-item:last-of-type{border-bottom:2px solid var(--encre)}
+.info-item .k{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;min-width:110px;color:var(--tomate)}
+.info-item .v{font-size:1.05rem}
+.info-item .v a{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+.services{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.8rem}
+.chip{
+  font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  border:1.5px solid var(--encre);border-radius:999px;padding:.4rem .95rem;
+  background:var(--creme);
+}
+
+/* ---------- footer ---------- */
+footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;position:relative;overflow:hidden}
+.foot-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:end}
+.foot-logo{font-size:clamp(4rem,10vw,8rem);color:var(--tomate);line-height:.9}
+.foot-logo .fx{color:var(--creme);font-size:.35em;vertical-align:super;font-style:italic}
+.foot-links{display:flex;flex-direction:column;gap:.7rem;align-items:flex-end;font-family:'Space Grotesk',sans-serif;font-size:.9rem}
+.foot-links a{text-decoration:none;letter-spacing:.06em;transition:color .25s}
+.foot-links a:hover{color:var(--menthe)}
+.foot-bottom{
+  max-width:1200px;margin:3.5rem auto 0;padding-top:1.4rem;
+  border-top:1px solid rgba(243,234,213,.2);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-family:'Space Grotesk',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.65;
+}
+.foot-bottom a{text-decoration:none;text-underline-offset:3px}
+.foot-bottom a:hover{color:var(--menthe)}
+.foot-bottom .credit{font-weight:700}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:96px;min-height:auto}
+  .hero-txt{padding-bottom:1rem}
+  .hero-visu{margin-top:1.5rem}
+  .concept-grid,.infos-grid,.foot-grid{grid-template-columns:1fr;gap:3rem}
+  .pizzas,.small-grid,.photo-row{grid-template-columns:1fr 1fr}
+  .photo-row .polaroid:nth-child(2){transform:rotate(1.6deg)}
+  .foot-links{align-items:flex-start}
+}
+@media (max-width:640px){
+  nav .nl{display:none}
+  .pizzas,.small-grid,.photo-row{grid-template-columns:1fr}
+  .fp-prices{gap:1.4rem}
+  header{padding:12px 18px}
+  .hero{padding-left:6vw;padding-right:6vw}
+  .hero-badge{width:100px;height:100px;font-size:.56rem;top:3%}
+  .stats{flex-direction:column}
+  .stat{border-right:none;border-bottom:2px solid var(--encre)}
+  .stat:last-child{border-bottom:none}
+  .letterboard{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <div class="intro-logo">
+    <span class="intro-line intro-pizza"><span>pizza</span></span>
+    <span class="intro-line intro-jimmys"><span>Jimmy's<span class="intro-star">★</span></span></span>
+    <span class="intro-line intro-slices"><span>slices · Nantes</span></span>
+  </div>
+  <div class="intro-baseline">Fast service, great food</div>
+</div>
+
+<header>
+  <a class="logo-wrap" href="#top">
+    <span class="logo-sub">pizza</span>
+    <span class="logo-main groovy">Jimmy's</span>
+    <span class="logo-sub">slices</span>
+  </a>
+  <nav>
+    <a class="nl" href="#menu">Le menu</a>
+    <a class="nl" href="#lieu">Le lieu</a>
+    <a class="nl" href="#infos">Infos</a>
+    <a class="tel-btn" href="tel:+33625911065">06 25 91 10 65</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-txt">
+      <span class="hero-kicker label rv on"><span class="dot"></span>Quartier Gare Nord · Nantes</span>
+      <h1 class="groovy rv on d1">La “New York<br>style” pizza.<br><span class="slice-w">Enfin à Nantes.</span></h1>
+      <p class="hero-sub rv on d2">Croustillante dessous, moelleuse dedans, pliée en deux comme à Brooklyn. Pizza by the slice, pâte fermentée 72&nbsp;heures — à dévorer sur place, à emporter ou en livraison.</p>
+      <div class="hero-ctas rv on d3">
+        <a class="btn btn-creme" href="#menu">Voir le menu</a>
+        <a class="btn btn-ghost" href="#infos">Horaires &amp; accès</a>
+      </div>
+    </div>
+    <div class="hero-visu rv on d2">
+      <div class="devanture">
+        <img src="assets/facade.jpg" alt="La devanture orange de Jimmy's Pizza, 4 allée du Commandant Charcot à Nantes" width="480" height="640">
+      </div>
+      <div class="hero-badge">Fast service<br>★<br>Great food</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-inner">
+      <span>Pizza by the slice</span><span class="st">★</span><span>Pâte 72h</span><span class="st">★</span><span>Fast service, great food</span><span class="st">★</span><span>Sur place · à emporter · livraison</span><span class="st">★</span><span>Pizza by the slice</span><span class="st">★</span><span>Pâte 72h</span><span class="st">★</span><span>Fast service, great food</span><span class="st">★</span><span>Sur place · à emporter · livraison</span><span class="st">★</span>
+    </div>
+  </div>
+  <div class="damier" aria-hidden="true"></div>
+
+  <!-- CONCEPT -->
+  <section class="concept" id="concept">
+    <div class="concept-grid">
+      <figure class="polaroid rv">
+        <img src="assets/slices.jpg" alt="Quatre parts de pizza New York style sur assiettes en carton" width="800" height="1067">
+        <figcaption>Les slices du jour ★</figcaption>
+      </figure>
+      <div>
+        <span class="label rv">Le concept</span>
+        <h2 class="groovy rv d1">Une part, une assiette en carton, zéro chichi.</h2>
+        <p class="rv d2">Chez Jimmy's, la pizza se vend à la part, comme dans les slice shops new-yorkais. De grandes pizzas fines cuites toute la journée, tranchées à la demande, repassées au four pour le croustillant.</p>
+        <p class="rv d2">La pâte&nbsp;? Un mélange de quatre farines sélectionnées et une fermentation lente de 72&nbsp;heures. Le reste&nbsp;: des produits de qualité, beaucoup de fait maison, et des recettes qui changent au fil des envies.</p>
+        <div class="stats rv d3">
+          <div class="stat"><b>72h</b><span>de fermentation</span></div>
+          <div class="stat"><b>4</b><span>farines sélectionnées</span></div>
+          <div class="stat"><b>1<sup>re</sup></b><span>pizzeria NY de Nantes</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="damier mint" aria-hidden="true"></div>
+
+  <!-- MENU -->
+  <section class="menu-sec" id="menu">
+    <div class="menu-head">
+      <div>
+        <span class="label rv">À la carte</span>
+        <h2 class="groovy rv d1">Le menu</h2>
+      </div>
+      <p class="note rv d1">Carte 06/26 — susceptible d'évoluer<br>selon saison &amp; arrivages</p>
+    </div>
+
+    <div class="menu-board rv">
+
+      <div class="menu-cat">
+        <h3 class="cat-title">Pizza by the slice</h3>
+        <div class="pizzas">
+          <article class="pz rv">
+            <div class="pz-top"><h4>Classic Cheese</h4><span class="prix">4,10&nbsp;€</span></div>
+            <p>Sauce tomate, mozza fior di latte, origan, parmesan</p>
+          </article>
+          <article class="pz rv d1">
+            <div class="pz-top"><h4>Pepperoni</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Sauce tomate, mozza fior di latte, pepperoni signature Jimmy's, origan, parmesan</p>
+          </article>
+          <article class="pz rv d2">
+            <div class="pz-top"><h4>White</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Mozza fior di latte, scamorza, champignons, persillade, ricotta citronnée, gomashio</p>
+          </article>
+          <article class="pz rv">
+            <div class="pz-top"><h4>Elote</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Crema mexicana, maïs rôti, mozza fior di latte, feta, coriandre, oignons, tajín</p>
+          </article>
+          <article class="pz rv d1">
+            <div class="pz-top"><h4>Wildside</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Sauce tomate, mozza fior di latte, scamorza, 'nduja, ricotta, vinaigre balsamique</p>
+          </article>
+          <article class="pz rv d2">
+            <div class="pz-top"><h4>La vie en Peach</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Sauce BBQ pêche &amp; cumin, oignons rouges &amp; pickles, aubergines rôties, fromage végétal maison</p>
+            <span class="tag-v">Vegan</span>
+          </article>
+          <article class="pz rv d1">
+            <div class="pz-top"><h4>Garbanzo Queen</h4><span class="prix">4,95&nbsp;€</span></div>
+            <p>Base hummus, courgettes marinées, tomates séchées, olives, zaatar, fromage végétal maison</p>
+            <span class="tag-v">Vegan</span>
+          </article>
+        </div>
+        <div class="full-pizza rv">
+          <div>
+            <h4>Full Pizza</h4>
+            <span class="fp-sub">8 slices · 3–4 personnes</span>
+          </div>
+          <div class="fp-prices">
+            <div><b>26&nbsp;€</b><span>Classic Cheese</span></div>
+            <div><b>29&nbsp;€</b><span>Autres recettes</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3 class="cat-title">Sides &amp; dips</h3>
+        <div class="small-grid">
+          <div class="sm-list rv">
+            <h4>Garlic Knots</h4>
+            <ul>
+              <li><span>3 knots + sauce marinara <em>· pâte à pizza, origan, ail, EVOO</em></span><b>4,50&nbsp;€</b></li>
+              <li><span>À l'unité, sans sauce</span><b>1,60&nbsp;€</b></li>
+            </ul>
+          </div>
+          <div class="sm-list rv d1">
+            <h4>Sandwich</h4>
+            <ul>
+              <li><span>Pain cuit sur place, mortadella à la pistache <em>ou version végé</em></span><b>6,50&nbsp;€</b></li>
+            </ul>
+          </div>
+          <div class="sm-list rv d2">
+            <h4>Dips</h4>
+            <ul>
+              <li><span>Marinara</span><b>1&nbsp;€</b></li>
+              <li><span>Hot Honey</span><b>1&nbsp;€</b></li>
+              <li><span>Hot Sauce</span><b>1&nbsp;€</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-cat">
+        <h3 class="cat-title">Desserts &amp; drinks</h3>
+        <div class="small-grid">
+          <div class="sm-list rv">
+            <h4>Desserts</h4>
+            <ul>
+              <li><span>Ben &amp; Jerry's ice cream</span><b>3,90&nbsp;€</b></li>
+              <li><span>Cookie</span><b>2,90&nbsp;€</b></li>
+            </ul>
+          </div>
+          <div class="sm-list rv d1">
+            <h4>Drinks <em style="font-size:.7em">— sur place</em></h4>
+            <ul>
+              <li><span>Sodas</span><b>3&nbsp;€</b></li>
+              <li><span>Eaux</span><b>2–3&nbsp;€</b></li>
+              <li><span>Café</span><b>2&nbsp;€</b></li>
+            </ul>
+          </div>
+          <div class="sm-list rv d2">
+            <h4>&amp; pour trinquer</h4>
+            <ul>
+              <li><span>Bières</span><b>4,50–6&nbsp;€</b></li>
+              <li><span>Vin (verre)</span><b>4&nbsp;€</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="menu-cta rv">
+      <a class="btn btn-creme" href="https://cdn.website.dish.co/media/ba/8f/10050138/Menu-1.pdf" target="_blank" rel="noopener">Menu PDF officiel</a>
+      <a class="btn btn-ghost" href="tel:+33625911065">Commander · 06 25 91 10 65</a>
+    </div>
+  </section>
+
+  <div class="damier" aria-hidden="true"></div>
+
+  <!-- LIEU -->
+  <section class="lieu" id="lieu">
+    <div class="lieu-head">
+      <span class="label rv">Le lieu</span>
+      <h2 class="groovy rv d1">Un damier au sol, des slices au comptoir, <em>l'esprit diner</em> côté Gare Nord.</h2>
+    </div>
+    <div class="photo-row">
+      <figure class="polaroid rv">
+        <img src="assets/salle.jpg" alt="La salle de Jimmy's : sol en damier, chaises bois et photos de surf" width="480" height="640" loading="lazy">
+        <figcaption>La salle ★ damier &amp; surf</figcaption>
+      </figure>
+      <figure class="polaroid rv d1">
+        <img src="assets/pancarte.jpg" alt="Letterboard d'accueil : bienvenue chez Jimmy's, la New York style pizza à Nantes" width="768" height="1024" loading="lazy">
+        <figcaption>Le mot d'accueil</figcaption>
+      </figure>
+      <figure class="polaroid rv d2">
+        <img src="assets/facade.jpg" alt="Terrasse et façade orange de Jimmy's, tables mint en terrasse" width="480" height="640" loading="lazy">
+        <figcaption>La terrasse ★ allée Charcot</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="damier mint" aria-hidden="true"></div>
+
+  <!-- INFOS -->
+  <section class="infos" id="infos">
+    <div class="infos-grid">
+      <div class="letterboard rv" role="table" aria-label="Horaires d'ouverture">
+        <div class="lb-title">— Horaires —</div>
+        <div class="lb-rows">
+          <div class="row"><span>Lundi</span><span>12h – 14h</span></div>
+          <div class="row"><span>Mardi</span><span>12h – 14h <span class="lb-star">★</span> 18h30 – 21h45</span></div>
+          <div class="row"><span>Mercredi</span><span>12h – 14h <span class="lb-star">★</span> 18h30 – 21h45</span></div>
+          <div class="row"><span>Jeudi</span><span>12h – 14h <span class="lb-star">★</span> 18h30 – 21h45</span></div>
+          <div class="row"><span>Vendredi</span><span>12h – 14h <span class="lb-star">★</span> 18h30 – 21h45</span></div>
+          <div class="row"><span>Samedi</span><span>18h30 – 21h45</span></div>
+          <div class="row"><span>Dimanche</span><span class="ferme">Fermé</span></div>
+        </div>
+      </div>
+      <div class="infos-txt">
+        <span class="label rv">Infos pratiques</span>
+        <h2 class="groovy rv d1">On vous attend.</h2>
+        <div class="rv d2">
+          <div class="info-item">
+            <span class="k">Adresse</span>
+            <span class="v"><a href="https://maps.google.com/?q=Jimmy's+Pizza+4+All%C3%A9e+Commandant+Charcot+44000+Nantes" target="_blank" rel="noopener">4 allée du Commandant Charcot, 44000 Nantes</a><br><small>Quartier Gare Nord / Jardin des Plantes</small></span>
+          </div>
+          <div class="info-item">
+            <span class="k">Téléphone</span>
+            <span class="v"><a href="tel:+33625911065">06 25 91 10 65</a></span>
+          </div>
+          <div class="info-item">
+            <span class="k">Email</span>
+            <span class="v"><a href="mailto:yannick@jimmyspizza.fr">yannick@jimmyspizza.fr</a></span>
+          </div>
+          <div class="info-item">
+            <span class="k">Instagram</span>
+            <span class="v"><a href="https://www.instagram.com/jimmyspizzanantes/" target="_blank" rel="noopener">@jimmyspizzanantes</a></span>
+          </div>
+        </div>
+        <div class="services rv d3">
+          <span class="chip">Sur place</span>
+          <span class="chip">À emporter</span>
+          <span class="chip">Livraison</span>
+          <span class="chip">Terrasse chauffée</span>
+          <span class="chip">Wi-Fi gratuit</span>
+          <span class="chip">Accès PMR</span>
+          <span class="chip">Animaux bienvenus</span>
+          <span class="chip">CB · Apple Pay · Tickets resto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <span class="label" style="color:var(--menthe)">pizza · slices</span>
+      <div class="foot-logo groovy">Jimmy's</div>
+    </div>
+    <div class="foot-links">
+      <a href="#menu">Le menu</a>
+      <a href="#lieu">Le lieu</a>
+      <a href="#infos">Horaires &amp; accès</a>
+      <a href="https://www.instagram.com/jimmyspizzanantes/" target="_blank" rel="noopener">Instagram</a>
+      <a href="tel:+33625911065">06 25 91 10 65</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Jimmy's Pizza — Nantes · <a href="mentions.html">Mentions légales</a></span>
+    <span>Fast service, great food ★</span>
+    <a class="credit" href="https://vokum-landing.vercel.app" target="_blank" rel="noopener">Création Vokum ↗</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const intro=document.getElementById('intro');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!intro) return;
+  if(reduced || sessionStorage.getItem('jimmys_intro')){
+    intro.remove();
+    return;
+  }
+  document.body.classList.add('intro-lock');
+  requestAnimationFrame(()=>intro.classList.add('intro-play'));
+  setTimeout(()=>{
+    intro.classList.add('intro-out');
+    document.body.classList.remove('intro-lock');
+    sessionStorage.setItem('jimmys_intro','1');
+    intro.addEventListener('animationend',e=>{ if(e.animationName==='introLift') intro.remove(); });
+  },2300);
+})();
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv:not(.on)').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

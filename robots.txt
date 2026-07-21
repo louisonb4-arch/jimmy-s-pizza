@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /mentions.html
+
+Sitemap: https://jimmys-site.vercel.app/sitemap.xml
