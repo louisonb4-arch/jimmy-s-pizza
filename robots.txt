@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /mentions.html
-
 Sitemap: https://jimmy-s-pizza.vercel.app/sitemap.xml
