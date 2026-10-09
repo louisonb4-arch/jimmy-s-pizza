@@ -71,7 +71,8 @@
   h.classList.add('js');
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   h.classList.add('js-motion');
-  var seen=false; try{ seen=!!sessionStorage.getItem('jimmys_intro'); }catch(e){}
+  /* ?intro dans l'URL force la relecture */
+  var seen=false; try{ seen=!!sessionStorage.getItem('jimmys_intro_v2') && !/[?&]intro\b/.test(location.search); }catch(e){}
   h.classList.add(seen?'intro-seen':'intro-lock');
   /* filet de sécurité : même si le script de fin de page casse, le site ne reste jamais masqué */
   setTimeout(function(){ h.classList.add('hero-go','intro-done'); h.classList.remove('intro-lock'); },7000);
@@ -1076,7 +1077,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
   let done=false;
   const exit=()=>{
     if(done) return; done=true;
-    try{ sessionStorage.setItem('jimmys_intro','1'); }catch(e){}
+    try{ sessionStorage.setItem('jimmys_intro_v2','1'); }catch(e){}
     intro.classList.add('play','out');
     html.classList.remove('intro-lock');
     setTimeout(go,140*k);
