@@ -65,6 +65,18 @@
   ]
 }
 </script>
+<script>
+/* États de motion posés avant le premier rendu. Sans JS ou en reduced-motion : tout est visible d'emblée. */
+(function(h){
+  h.classList.add('js');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  h.classList.add('js-motion');
+  var seen=false; try{ seen=!!sessionStorage.getItem('jimmys_intro'); }catch(e){}
+  h.classList.add(seen?'intro-seen':'intro-lock');
+  /* filet de sécurité : même si le script de fin de page casse, le site ne reste jamais masqué */
+  setTimeout(function(){ h.classList.add('hero-go','intro-done'); h.classList.remove('intro-lock'); },7000);
+})(document.documentElement);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -121,45 +133,98 @@ p{text-wrap:pretty}
           mask:url(assets/logo-mark.png) center/contain no-repeat;
 }
 
-/* ---------- reveals ---------- */
-/* translate (et non transform) pour ne pas écraser les rotations des polaroids, sticker, letterboard */
-.rv{opacity:0;translate:0 28px;transition:opacity .8s var(--ease),translate .8s var(--ease)}
-.rv.on{opacity:1;translate:none}
+/* ---------- reveals au scroll ---------- */
+/* translate (et non transform) pour ne pas écraser les rotations des polaroids, sticker, letterboard.
+   États masqués seulement sous html.js : sans JS, tout reste lisible. */
+.js .rv{opacity:0;translate:0 28px;transition:opacity .8s var(--ease),translate .8s var(--ease)}
+.js .rv.on{opacity:1;translate:none}
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
-@media (prefers-reduced-motion: reduce){.rv{opacity:1;translate:none;transition:none}}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1;translate:none;transition:none}}
 
-/* ---------- intro ---------- */
-#intro{
-  position:fixed;inset:0;z-index:100;
-  background:var(--tomate);
+/* ---------- ouverture : le letterboard d'accueil de la boutique ---------- */
+/* « Bienvenue chez → Jimmy's ! » : les lettres s'enfichent une à une, un peu de travers,
+   puis le tableau glisse vers le bas et le hero s'assemble. Rien ne s'applique sans html.js-motion. */
+:root{
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-io:cubic-bezier(.65,0,.35,1);
+  --k:1; /* facteur de tempo de toute l'ouverture */
+}
+#intro{display:none}
+.js-motion #intro{
+  --wood:clamp(10px,1.5vw,20px);
+  position:fixed;inset:0;z-index:100;height:100lvh;
   display:flex;align-items:center;justify-content:center;
-  border-bottom:6px solid var(--encre);
+  background:
+    radial-gradient(ellipse at 50% 46%,transparent 35%,rgba(0,0,0,.5) 100%),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.055) 0 1px,transparent 1px 7px),
+    #161311;
+  box-shadow:inset 0 0 0 var(--wood) #E4D5B5,inset 0 0 0 calc(var(--wood) + 3px) rgba(0,0,0,.4);
+  color:#FDFAF2;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
-body.intro-lock{overflow:hidden}
-.intro-mark{
-  width:min(64vw,400px);color:var(--creme);
-  opacity:0;transform:translateY(34px) scale(.9) rotate(-4deg);
-  clip-path:inset(100% 0 0 0);
+.intro-seen #intro,.intro-done #intro{display:none}
+html.intro-lock{overflow:hidden}
+.lb-board{
+  text-align:center;padding:0 6vw;
+  font-family:'Space Grotesk',sans-serif;font-weight:500;text-transform:uppercase;line-height:1;
 }
-.intro-play .intro-mark{animation:markIn 1.1s var(--ease) .1s forwards}
-@keyframes markIn{
-  60%{opacity:1}
-  to{opacity:1;transform:none;clip-path:inset(0 0 0 0)}
+.lb-line{white-space:nowrap}
+.lb-l1{font-size:clamp(1.35rem,4.2vw,3.3rem);letter-spacing:.22em;padding-left:.22em;margin-bottom:.6em}
+.lb-l2{font-size:clamp(2rem,7.8vw,6.2rem);letter-spacing:.12em;padding-left:.12em;font-weight:700}
+.lb-l3{font-size:clamp(.7rem,1.45vw,1rem);letter-spacing:.34em;padding-left:.34em;margin-top:2.8em;opacity:.78}
+.lb-ch{display:inline-block;text-shadow:0 .06em 0 rgba(0,0,0,.6)}
+.lb-ch.lb-star{color:var(--menthe)}
+.lb-sp{display:inline-block;width:.42em}
+.js-motion .lb-ch{
+  animation:lbPress calc(460ms * var(--k)) var(--ease-out) calc(var(--t,0ms) * var(--k)) backwards;
+  animation-play-state:paused;
 }
-.intro-baseline{
-  position:absolute;left:50%;bottom:8vh;transform:translateX(-50%);
-  color:var(--creme);opacity:0;
-  font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.72rem;
-  letter-spacing:.28em;text-transform:uppercase;white-space:nowrap;
+.js-motion #intro.play .lb-ch{animation-play-state:running}
+@keyframes lbPress{
+  0%  {opacity:0;translate:0 -.5em;rotate:var(--r,0deg)}
+  55% {opacity:1;translate:0 .04em;rotate:calc(var(--r,0deg) * -.25)}
+  100%{opacity:1;translate:0 0;rotate:0deg}
 }
-.intro-play .intro-baseline{animation:baseFade .8s ease .9s forwards}
-@keyframes baseFade{to{opacity:.9}}
-#intro.intro-out{animation:introLift .9s cubic-bezier(.65,0,.35,1) forwards}
-@keyframes introLift{
-  0%{transform:translateY(0);border-radius:0}
-  100%{transform:translateY(-102%);border-radius:0 0 64px 64px}
+.js-motion #intro.out{
+  animation:lbOut calc(820ms * var(--k)) var(--ease-io) forwards;
+  box-shadow:inset 0 0 0 var(--wood) #E4D5B5,inset 0 0 0 calc(var(--wood) + 3px) rgba(0,0,0,.4),0 -24px 60px rgba(28,21,16,.35);
 }
-@media (prefers-reduced-motion: reduce){#intro{display:none}}
+@keyframes lbOut{to{translate:0 101%}}
+
+/* ---------- cascade du hero ---------- */
+/* Animations déclarées en pause (fill backwards = état de départ déjà peint), lancées par html.hero-go.
+   Délai = --d (+ rang du mot pour le titre), le tout multiplié par --k. */
+@keyframes vIn{from{opacity:var(--o,0);translate:var(--tx,0px) var(--ty,1.2rem)}}
+@keyframes vClipUp{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes vBadge{from{opacity:0;rotate:-150deg;scale:.4}}
+.js-motion [data-h]{
+  animation:vIn calc(var(--dur,800ms) * var(--k)) var(--ease-out) calc(var(--d,0ms) * var(--k)) backwards;
+  animation-play-state:paused;
+}
+.js-motion header[data-h]{--ty:-110%;--o:1}
+.js-motion [data-h="clip"]{animation-name:vClipUp;--dur:1150ms}
+.js-motion .devanture img{
+  --ty:9%;--o:1;
+  animation:
+    vClipUp calc(1250ms * var(--k)) var(--ease-out) calc(var(--d-img,0ms) * var(--k)) backwards,
+    vIn     calc(1500ms * var(--k)) var(--ease-out) calc(var(--d-img,0ms) * var(--k)) backwards;
+  animation-play-state:paused,paused;
+}
+.js-motion .hero-badge[data-h]{animation-name:vBadge;--dur:1000ms}
+.hero-go [data-h]{animation-play-state:running}
+.hero-go .devanture img{animation-play-state:running,running}
+/* titre : chaque mot est son propre masque, son contenu monte depuis le bas */
+.word{display:inline-block;overflow:hidden;vertical-align:top;padding:.05em .04em .16em;margin:-.05em -.04em -.16em}
+.word__inner{display:inline-block}
+.js-motion h1[data-split]:not(.is-split){opacity:0}
+.js-motion .word__inner{
+  --ty:112%;--o:1;
+  animation:vIn calc(950ms * var(--k)) var(--ease-out) calc((var(--d,0ms) + var(--wi,0) * 60ms) * var(--k)) backwards;
+  animation-play-state:paused;
+}
+.hero-go .word__inner{animation-play-state:running}
+@media (max-width:640px){:root{--k:.75}}
 
 /* ---------- header ---------- */
 header{
@@ -620,11 +685,14 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
 <body>
 
 <div id="intro" aria-hidden="true">
-  <span class="mark intro-mark"></span>
-  <div class="intro-baseline">Fast service, great food</div>
+  <div class="lb-board">
+    <p class="lb-line lb-l1">Bienvenue chez</p>
+    <p class="lb-line lb-l2">→ Jimmy's ! ★</p>
+    <p class="lb-line lb-l3">Fast service, great food</p>
+  </div>
 </div>
 
-<header>
+<header data-h>
   <a class="logo-wrap" href="#top" aria-label="Jimmy's Pizza Slices — retour en haut">
     <span class="mark" role="img" aria-label="Logo Jimmy's Pizza Slices"></span>
   </a>
@@ -642,24 +710,24 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
   <!-- HERO -->
   <section class="hero">
     <div class="hero-txt">
-      <span class="status rv on" data-status><span class="dot"></span><span class="status-txt">Quartier Gare Nord · Nantes</span></span>
-      <h1 class="groovy rv on d1">La “New York<br>style” pizza.<br><span class="slice-w">Enfin à&nbsp;Nantes.</span></h1>
-      <p class="hero-sub rv on d2">Croustillante dessous, moelleuse dedans, pliée en deux comme à Brooklyn. Pizza by the slice, pâte fermentée 72&nbsp;heures — à dévorer sur place, à emporter ou en livraison.</p>
-      <div class="hero-ctas rv on d3">
-        <a class="btn btn-creme" href="#menu">Voir le menu</a>
-        <a class="btn btn-ghost" href="#infos">Horaires &amp; accès</a>
+      <span class="status" data-status data-h style="--d:120ms"><span class="dot"></span><span class="status-txt">Quartier Gare Nord · Nantes</span></span>
+      <h1 class="groovy" data-split style="--d:200ms">La “New York<br>style” pizza.<br><span class="slice-w">Enfin à&nbsp;Nantes.</span></h1>
+      <p class="hero-sub" data-h style="--d:560ms">Croustillante dessous, moelleuse dedans, pliée en deux comme à Brooklyn. Pizza by the slice, pâte fermentée 72&nbsp;heures — à dévorer sur place, à emporter ou en livraison.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-creme" href="#menu" data-h style="--d:660ms">Voir le menu</a>
+        <a class="btn btn-ghost" href="#infos" data-h style="--d:740ms">Horaires &amp; accès</a>
       </div>
-      <a class="hero-where rv on d3" href="https://maps.google.com/?q=Jimmy's+Pizza+4+All%C3%A9e+Commandant+Charcot+44000+Nantes" target="_blank" rel="noopener" style="text-decoration:none">
+      <a class="hero-where" data-h style="--d:820ms;text-decoration:none" href="https://maps.google.com/?q=Jimmy's+Pizza+4+All%C3%A9e+Commandant+Charcot+44000+Nantes" target="_blank" rel="noopener">
         <svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 0C3.1 0 0 3.1 0 7c0 5.2 7 11 7 11s7-5.8 7-11c0-3.9-3.1-7-7-7Zm0 9.6A2.6 2.6 0 1 1 7 4.4a2.6 2.6 0 0 1 0 5.2Z" fill="currentColor"/></svg>
         4 allée du Commandant Charcot · Gare Nord
       </a>
     </div>
-    <div class="hero-visu rv on d2">
+    <div class="hero-visu">
       <div class="portal">
-        <div class="devanture">
+        <div class="devanture" data-h="clip" style="--d:150ms;--d-img:330ms">
           <img src="assets/facade.jpg" alt="La devanture de Jimmy's Pizza, 4 allée du Commandant Charcot à Nantes" width="480" height="640" decoding="async" fetchpriority="high">
         </div>
-        <div class="hero-badge" aria-hidden="true">
+        <div class="hero-badge" aria-hidden="true" data-h style="--d:850ms">
           <svg viewBox="0 0 128 128"><defs><path id="badgeCircle" d="M64,64 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#badgeCircle" textLength="292" lengthAdjust="spacing">FAST SERVICE ★ GREAT FOOD ★</textPath></text></svg>
           <span class="hb-core">★</span>
         </div>
@@ -922,7 +990,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
   <div class="foot-bottom">
     <span>© 2026 Jimmy's Pizza — Nantes · <a href="mentions.html">Mentions légales</a></span>
     <span>Fast service, great food ★</span>
-    <a class="credit" href="https://vokum-landing.vercel.app" target="_blank" rel="noopener">Création Vokum ↗</a>
+    <a class="credit" href="https://vokumagency.com" target="_blank" rel="noopener">Création Vokum ↗</a>
   </div>
 </footer>
 
@@ -942,21 +1010,89 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
 </nav>
 
 <script>
+/* Ouverture — letterboard « Bienvenue chez → Jimmy's ! », puis cascade du hero */
 (function(){
+  const html=document.documentElement;
   const intro=document.getElementById('intro');
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!intro) return;
-  let seen=false;
-  try{ seen=!!sessionStorage.getItem('jimmys_intro'); }catch(e){}
-  if(reduced || seen){ intro.remove(); return; }
-  document.body.classList.add('intro-lock');
-  requestAnimationFrame(()=>intro.classList.add('intro-play'));
-  setTimeout(()=>{
-    intro.classList.add('intro-out');
-    document.body.classList.remove('intro-lock');
+  const motion=html.classList.contains('js-motion');
+  const go=()=>html.classList.add('hero-go');
+  const fontsReady=ms=>Promise.race([document.fonts?document.fonts.ready:Promise.resolve(),new Promise(r=>setTimeout(r,ms))]);
+
+  if(!motion){ if(intro) intro.remove(); return; }
+
+  // titre découpé mot par mot (les <br> et le span « Enfin à Nantes. » sont conservés)
+  const h1=document.querySelector('.hero h1[data-split]');
+  if(h1){
+    const label=h1.textContent.replace(/\s+/g,' ').trim();
+    let wi=0;
+    const walk=node=>[...node.childNodes].forEach(n=>{
+      if(n.nodeType===1){ if(n.tagName!=='BR') walk(n); return; }
+      if(n.nodeType!==3) return;
+      const frag=document.createDocumentFragment();
+      n.textContent.split(/( +)/).forEach(part=>{
+        if(!part) return;
+        if(part.trim()===''){ frag.append(' '); return; }
+        const w=document.createElement('span'), inner=document.createElement('span');
+        w.className='word'; w.setAttribute('aria-hidden','true'); w.style.setProperty('--wi',wi++);
+        inner.className='word__inner'; inner.textContent=part;
+        w.append(inner); frag.append(w);
+      });
+      n.replaceWith(frag);
+    });
+    walk(h1);
+    h1.setAttribute('aria-label',label);
+    h1.classList.add('is-split');
+  }
+
+  // visite déjà faite dans la session : pas de letterboard, juste la cascade
+  if(!intro || html.classList.contains('intro-seen')){
+    if(intro) intro.remove();
+    fontsReady(700).then(()=>requestAnimationFrame(go));
+    return;
+  }
+
+  // chaque caractère devient une lettre de letterboard, posée légèrement de travers
+  const steps=[28,42,11], starts=[0,500,1000];   // pas entre lettres et départ de chaque ligne (ms)
+  let last=0, seed=11;
+  const rand=()=>(seed=(seed*9301+49297)%233280)/233280;
+  intro.querySelectorAll('.lb-line').forEach((line,li)=>{
+    const chars=[...line.textContent.trim()];
+    line.textContent='';
+    let n=0;
+    chars.forEach(ch=>{
+      if(ch===' '){ const sp=document.createElement('span'); sp.className='lb-sp'; line.append(sp); return; }
+      const c=document.createElement('span');
+      const t=starts[li]+n++*steps[li];
+      c.className='lb-ch'+(ch==='★'?' lb-star':'');
+      c.textContent=ch;
+      c.style.setProperty('--t',t+'ms');
+      c.style.setProperty('--r',((rand()*2-1)*9).toFixed(1)+'deg');
+      line.append(c);
+      last=Math.max(last,t);
+    });
+  });
+
+  const k=parseFloat(getComputedStyle(html).getPropertyValue('--k'))||1;
+  let done=false;
+  const exit=()=>{
+    if(done) return; done=true;
     try{ sessionStorage.setItem('jimmys_intro','1'); }catch(e){}
-    intro.addEventListener('animationend',e=>{ if(e.animationName==='introLift') intro.remove(); });
-  },2100);
+    intro.classList.add('play','out');
+    html.classList.remove('intro-lock');
+    setTimeout(go,140*k);
+    intro.addEventListener('animationend',e=>{
+      if(e.animationName!=='lbOut') return;
+      intro.remove(); html.classList.add('intro-done');
+    });
+  };
+  // le tableau vide masque le chargement des fontes, puis les lettres se posent
+  fontsReady(1200).then(()=>requestAnimationFrame(()=>{
+    intro.classList.add('play');
+    setTimeout(exit,(last+460+320)*k);
+  }));
+  // un clic, un tap ou une touche : on passe directement
+  intro.addEventListener('click',exit);
+  addEventListener('keydown',exit,{once:true});
 })();
 
 /* Horaires — à garder synchronisés avec le tableau et le JSON-LD (minutes depuis minuit, heure de Paris) */
