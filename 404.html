@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — Jimmy's Pizza Slices</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#E8451F">
+<link rel="stylesheet" href="/assets/fonts.css">
+<style>
+/* chemins absolus : Vercel sert cette page pour n'importe quelle URL inexistante, même imbriquée */
+:root{--tomate:#E8451F;--creme:#F3EAD5;--encre:#1C1510;--menthe:#8FCDC0;--beige:#CFC5AE}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  min-height:100svh;display:flex;flex-direction:column;
+  background:var(--tomate);color:var(--encre);
+  font-family:'Fraunces',serif;line-height:1.5;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--menthe);outline-offset:3px}
+header{padding:14px 28px}
+.logo{display:block;width:76px;color:var(--creme)}
+.mark{
+  display:block;aspect-ratio:900/645;background:currentColor;
+  -webkit-mask:url(/assets/logo-mark.webp) center/contain no-repeat;
+          mask:url(/assets/logo-mark.webp) center/contain no-repeat;
+}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:2rem 7vw 4rem;max-width:1100px}
+.code{
+  font-family:'Corben',serif;font-weight:700;color:var(--creme);
+  font-size:clamp(7rem,26vw,17rem);line-height:.86;letter-spacing:-.03em;
+}
+.code span{display:inline-block;transform:rotate(-8deg) translateY(.04em);color:var(--encre)}
+h1{
+  font-family:'Corben',serif;font-weight:700;color:var(--creme);
+  font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.05;margin:1.4rem 0 1rem;text-wrap:balance;
+}
+p{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:34rem}
+.ctas{display:flex;align-items:center;gap:1.4rem;flex-wrap:wrap;margin-top:2.2rem}
+.btn{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.05em;text-transform:uppercase;
+  text-decoration:none;padding:.95rem 1.7rem;border-radius:999px;border:2px solid var(--encre);
+  background:var(--creme);color:var(--encre);box-shadow:4px 4px 0 var(--encre);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--encre)}
+.alt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-underline-offset:4px;text-decoration-thickness:2px}
+.damier{height:34px;border-top:3px solid var(--encre);background:repeating-conic-gradient(var(--menthe) 0% 25%,var(--creme) 0% 50%) 0 0/34px 34px}
+@media (max-width:640px){header{padding:10px 18px}.logo{width:60px}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="/" aria-label="Jimmy's Pizza Slices — accueil"><span class="mark" role="img" aria-label="Logo Jimmy's Pizza Slices"></span></a></header>
+<main>
+  <div class="code" aria-hidden="true">4<span>0</span>4</div>
+  <h1>Cette part est déjà partie.</h1>
+  <p>La page que vous cherchez n'existe pas, ou plus. Les slices, elles, sont toujours au comptoir — 4 allée du Commandant Charcot, à Nantes.</p>
+  <div class="ctas">
+    <a class="btn" href="/">Retour à l'accueil</a>
+    <a class="alt" href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener">ou commander en ligne ↗</a>
+  </div>
+</main>
+<div class="damier" aria-hidden="true"></div>
+</body>
+</html>

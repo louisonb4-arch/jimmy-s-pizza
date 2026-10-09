@@ -7,6 +7,7 @@
 <meta name="description" content="Mentions légales du site de Jimmy's Pizza Slices, pizzeria New York style à Nantes : éditeur, hébergeur, commande en ligne, informations consommateurs.">
 <link rel="canonical" href="https://jimmy-s-pizza.vercel.app/mentions-legales">
 <meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#E8451F">
@@ -38,7 +39,7 @@
     <a href="#consommateurs">Infos consommateurs</a>
     <a href="#mediation">Médiation</a>
     <a href="#propriete">Propriété intellectuelle</a>
-    <a href="#responsabilite">Responsabilité</a>
+    <a href="#responsabilite">Conditions d'utilisation</a>
   </nav>
 
   <section id="editeur">
@@ -54,7 +55,7 @@
       <dt>Code APE</dt><dd>56.10C — Restauration de type rapide</dd>
       <dt>Gérant</dt><dd>Yannick Kowalski</dd>
       <dt>Téléphone</dt><dd><a href="tel:+33625911065">06 25 91 10 65</a></dd>
-      <dt>E-mail</dt><dd><a href="mailto:yannick@jimmyspizza.fr">yannick@jimmyspizza.fr</a></dd>
+      <dt>E-mail</dt><dd><a class="mail" data-u="yannick" data-d="jimmyspizza.fr" href="#">yannick [arobase] jimmyspizza.fr</a></dd>
     </dl>
     <p class="source">D'où viennent ces données. Relevées le 9 octobre 2026 : identité, siège, activité et gérance au registre national des entreprises (API publique recherche-entreprises.api.gouv.fr) ; capital et greffe dans l'annonce légale de constitution ; numéro de TVA validé à cette date par le système européen VIES. Le téléphone et l'e-mail sont ceux que l'établissement publie lui-même.</p>
   </section>
@@ -115,7 +116,8 @@
   </section>
 
   <section id="responsabilite">
-    <h2>Responsabilité et droit applicable</h2>
+    <h2>Conditions d'utilisation, responsabilité et droit applicable</h2>
+    <p>Le site est accessible librement et gratuitement, sans inscription. Son utilisation vaut acceptation des présentes mentions.</p>
     <p>L'éditeur s'efforce de tenir à jour les informations publiées (carte, prix, horaires), sans pouvoir garantir leur exactitude à tout instant : les recettes du moment et les horaires peuvent changer. En cas de doute, appelez le <a href="tel:+33625911065">06 25 91 10 65</a>.</p>
     <p>L'éditeur n'est pas responsable du contenu ni du fonctionnement des sites tiers vers lesquels pointent les liens du site.</p>
     <p>Les présentes mentions sont soumises au droit français. Pour les données personnelles, voir la <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
@@ -130,5 +132,7 @@
   </div>
 </footer>
 
+<script>/* e-mail reconstitué au chargement : absent du HTML, invisible pour les robots collecteurs */
+document.querySelectorAll('a.mail').forEach(function(a){var e=a.dataset.u+'@'+a.dataset.d;a.href='mailto:'+e;a.textContent=e;});</script>
 </body>
 </html>

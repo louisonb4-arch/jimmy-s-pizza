@@ -1,6 +1,7 @@
 /* Pages légales — mêmes tokens que le site, rendu sobre */
 :root{
   --tomate:#E8451F;
+  --tomate-txt:#B82F10; /* petits textes sur crème : ≥ 4,6:1 (AA) */
   --creme:#F3EAD5;
   --creme-2:#EDE2C8;
   --encre:#1C1510;
@@ -36,13 +37,13 @@ header{
 .logo-wrap{display:block;width:70px;text-decoration:none}
 .mark{
   display:block;aspect-ratio:900/645;background:currentColor;
-  -webkit-mask:url(logo-mark.png) center/contain no-repeat;
-          mask:url(logo-mark.png) center/contain no-repeat;
+  -webkit-mask:url(logo-mark.webp) center/contain no-repeat;
+          mask:url(logo-mark.webp) center/contain no-repeat;
 }
 .back{
   font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;
   text-decoration:none;letter-spacing:.04em;white-space:nowrap;
-  background:var(--creme);color:var(--tomate);
+  background:var(--creme);color:var(--tomate-txt);
   padding:.55rem 1.1rem;border-radius:999px;border:2px solid var(--encre);
   box-shadow:3px 3px 0 var(--encre);
   transition:transform .25s ease,box-shadow .25s ease;
@@ -50,7 +51,7 @@ header{
 .back:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--encre)}
 
 main{max-width:840px;margin:0 auto;padding:140px 6vw 5rem}
-.kicker{color:var(--tomate)}
+.kicker{color:var(--tomate-txt)}
 h1.groovy{font-size:clamp(2.2rem,5.2vw,3.6rem);color:var(--tomate);margin:.8rem 0 1.2rem;text-wrap:balance}
 .lead{font-size:1.06rem;max-width:40rem;margin-bottom:1rem}
 .updated{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:2.4rem}
@@ -80,7 +81,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;bac
 /* fiche d'identité */
 dl.facts{display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;margin:.2rem 0 1rem}
 dl.facts dt,dl.facts dd{padding:.55rem 0;border-bottom:1px dashed var(--rule)}
-dl.facts dt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tomate);padding-right:1rem;padding-top:.75rem}
+dl.facts dt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tomate-txt);padding-right:1rem;padding-top:.75rem}
 dl.facts dd{font-size:.98rem}
 dl.facts dt:last-of-type,dl.facts dd:last-of-type{border-bottom:none}
 .source{font-size:.86rem;opacity:.75}

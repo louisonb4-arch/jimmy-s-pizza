@@ -7,6 +7,7 @@
 <meta name="description" content="Politique de confidentialité du site de Jimmy's Pizza Slices : aucune donnée collectée, aucun cookie, commande en ligne sur des plateformes tierces.">
 <link rel="canonical" href="https://jimmy-s-pizza.vercel.app/politique-confidentialite">
 <meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="theme-color" content="#E8451F">
@@ -41,7 +42,7 @@
   <section id="responsable">
     <h2>Qui est responsable</h2>
     <p><strong>JIMMY'S PIZZA</strong>, SARL au capital de 10 000 €, RCS Nantes 988 336 335, dont le siège est situé 4 allée du Commandant Charcot, 44000 Nantes, est responsable du traitement au sens du règlement (UE) 2016/679 (RGPD).</p>
-    <p>Contact : <a href="mailto:yannick@jimmyspizza.fr">yannick@jimmyspizza.fr</a> · <a href="tel:+33625911065">06 25 91 10 65</a></p>
+    <p>Contact : <a class="mail" data-u="yannick" data-d="jimmyspizza.fr" href="#">yannick [arobase] jimmyspizza.fr</a> · <a href="tel:+33625911065">06 25 91 10 65</a></p>
     <p>Compte tenu de la nature et du volume des traitements, la désignation d'un délégué à la protection des données n'est pas requise.</p>
   </section>
 
@@ -88,7 +89,7 @@
 
   <section id="droits">
     <h2>Vos droits</h2>
-    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition, de limitation et de portabilité sur les données vous concernant. Ce site n'en collectant pas, ces droits s'exercent en pratique sur les échanges que vous avez eus avec l'établissement : écrivez à <a href="mailto:yannick@jimmyspizza.fr">yannick@jimmyspizza.fr</a>.</p>
+    <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition, de limitation et de portabilité sur les données vous concernant. Ce site n'en collectant pas, ces droits s'exercent en pratique sur les échanges que vous avez eus avec l'établissement : écrivez à <a class="mail" data-u="yannick" data-d="jimmyspizza.fr" href="#">yannick [arobase] jimmyspizza.fr</a>.</p>
     <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07).</p>
     <p>Si un outil de mesure d'audience, une carte intégrée ou tout autre service tiers venait à être ajouté, cette politique serait mise à jour et, si la loi l'exige, votre consentement serait demandé avant tout dépôt de traceur.</p>
   </section>
@@ -102,5 +103,7 @@
   </div>
 </footer>
 
+<script>/* e-mail reconstitué au chargement : absent du HTML, invisible pour les robots collecteurs */
+document.querySelectorAll('a.mail').forEach(function(a){var e=a.dataset.u+'@'+a.dataset.d;a.href='mailto:'+e;a.textContent=e;});</script>
 </body>
 </html>
