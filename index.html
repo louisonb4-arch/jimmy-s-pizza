@@ -6,6 +6,8 @@
 <title>Jimmy's Pizza — Pizzeria New York Style à Nantes (Gare Nord) · Pizza by the Slice</title>
 <meta name="description" content="Jimmy's Pizza, la première pizzeria New York style de Nantes : pizza à la part, pâte fermentée 72 h. 4 allée du Commandant Charcot, quartier Gare Nord. Sur place, à emporter ou en livraison — 06 25 91 10 65.">
 <link rel="canonical" href="https://jimmy-s-pizza.vercel.app/">
+<!-- Maquette en attente de validation par l'établissement : non indexée. À retirer (ici et dans vercel.json) à la mise en ligne officielle. -->
+<meta name="robots" content="noindex, nofollow">
 <meta name="geo.region" content="FR-44">
 <meta name="geo.placename" content="Nantes">
 <meta name="geo.position" content="47.21772;-1.54386">
@@ -39,8 +41,13 @@
   "servesCuisine": ["Pizza", "Pizza new-yorkaise", "Américaine"],
   "priceRange": "€",
   "currenciesAccepted": "EUR",
-  "paymentAccepted": "Espèces, Carte bancaire, Apple Pay, Tickets restaurant",
+  "paymentAccepted": "Espèces, Carte bancaire (Visa, Mastercard), Paiement sans contact, Titres-restaurant",
   "hasMenu": "https://jimmy-s-pizza.vercel.app/#menu",
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": { "@type": "EntryPoint", "urlTemplate": "https://jimmys-pizza-nantes.order.app.hd.digital" },
+    "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
+  },
   "acceptsReservations": "False",
   "address": {
     "@type": "PostalAddress",
@@ -58,7 +65,7 @@
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "12:00", "closes": "14:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "12:00", "closes": "14:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "18:30", "closes": "21:45" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "18:30", "closes": "22:00" }
   ],
   "sameAs": [
     "https://www.instagram.com/jimmyspizzanantes/"
@@ -78,9 +85,9 @@
   setTimeout(function(){ h.classList.add('hero-go','intro-done'); h.classList.remove('intro-lock'); },7000);
 })(document.documentElement);
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Corben:wght@700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="preload" href="assets/fonts/caprasimo-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/corben-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/logo-mark.png" as="image">
 <link rel="preload" href="assets/logo-sprite.png" as="image">
 <style>
@@ -464,23 +471,17 @@ h1 .slice-w{display:inline-block;transform:skewX(-7deg);color:var(--encre);white
   background:var(--menthe);border:1.5px solid var(--encre);border-radius:999px;
   padding:.16rem .55rem;
 }
-.sl-full{
-  align-self:center;
-  margin:.9rem 0 .4rem;
-  background:var(--encre);color:var(--creme);
-  border-radius:20px;
-  padding:1.2rem 1.4rem 1.25rem;
-  transform:rotate(-1.2deg);
-  box-shadow:5px 5px 0 var(--tomate);
-  position:relative;
+.tag-v.sq{background:var(--tomate);color:var(--creme)}
+/* infos consommateurs obligatoires : prix, allergènes, alcool */
+.menu-legal{
+  margin-top:2.6rem;padding-top:1.3rem;border-top:2px dashed var(--rule);
+  display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;
+  font-family:'Space Grotesk',sans-serif;font-size:.72rem;letter-spacing:.04em;line-height:1.5;opacity:.78;
 }
-.sl-full .label{color:var(--menthe);font-size:.64rem}
-.sl-full h4{font-size:1.6rem;margin:.3rem 0 .1rem}
-.sl-full .fp-sub{font-family:'Space Grotesk',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
-.fp-prices{display:flex;gap:1.8rem;margin-top:.9rem;padding-top:.85rem;border-top:1px dashed rgba(243,234,213,.3)}
-.fp-prices b{display:block;font-family:'Corben',serif;font-weight:700;font-size:1.6rem;color:var(--tomate);line-height:1}
-.fp-prices span{display:block;font-family:'Space Grotesk',sans-serif;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-top:.3rem}
+.menu-legal span{flex:1 1 15rem}
+.menu-legal b{font-weight:700}
 .extras{display:grid;grid-template-columns:repeat(3,1fr)}
+.extras--2{grid-template-columns:repeat(2,1fr)}
 .ex{padding:0 clamp(1.2rem,2.6vw,2.2rem);border-left:2px dashed var(--rule)}
 .ex:first-child{padding-left:0;border-left:none}
 .ex:last-child{padding-right:0}
@@ -493,6 +494,7 @@ h1 .slice-w{display:inline-block;transform:skewX(-7deg);color:var(--encre);white
 .ex .row .lead{border-bottom-width:1.5px;border-color:rgba(28,21,16,.35)}
 .ex li em{display:block;font-style:normal;font-size:.84rem;opacity:.7;line-height:1.4;margin-top:.1rem}
 .menu-cta{max-width:1200px;margin:2.6rem auto 0;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.menu-cta-note{max-width:44rem;margin:1.1rem auto 0;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:.72rem;letter-spacing:.04em;line-height:1.55;opacity:.85}
 
 /* ---------- lieu ---------- */
 .lieu{padding:7rem 5vw 7.5rem;background:var(--creme);overflow:hidden}
@@ -604,6 +606,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
 .foot-bottom a{text-decoration:none}
 .foot-bottom a:hover{color:var(--menthe)}
 .foot-bottom .credit{font-weight:700}
+.foot-bottom .legal a{text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- dock mobile ---------- */
 .dock{display:none}
@@ -628,8 +631,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
   .slices{grid-template-columns:1fr}
   .slices::before{display:none}
   .sl:nth-last-child(2){border-bottom:2px dashed var(--rule)}
-  .sl-full{margin:1.4rem 0 .4rem}
-  .extras{grid-template-columns:1fr}
+  .extras,.extras--2{grid-template-columns:1fr}
   .ex,.ex:first-child,.ex:last-child{padding:1.2rem 0;border-left:none;border-top:2px dashed var(--rule)}
   .ex:first-child{border-top:none;padding-top:0}
   .cat-head .label{display:none}
@@ -724,7 +726,8 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
     <a class="nl" href="#menu">Le menu</a>
     <a class="nl" href="#lieu">Le lieu</a>
     <a class="nl" href="#infos">Infos</a>
-    <a class="tel-btn" href="tel:+33625911065">06 25 91 10 65</a>
+    <a class="nl" href="tel:+33625911065">06 25 91 10 65</a>
+    <a class="tel-btn" href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener">Commander ↗</a>
   </nav>
   <a class="status head-status" href="#infos" data-status hidden><span class="dot"></span><span class="status-txt"></span></a>
 </header>
@@ -738,8 +741,8 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
       <h1 class="groovy" data-split style="--d:200ms">La “New York<br>style” pizza.<br><span class="slice-w">Enfin à&nbsp;Nantes.</span></h1>
       <p class="hero-sub" data-h style="--d:560ms">Croustillante dessous, moelleuse dedans, pliée en deux comme à Brooklyn. Pizza by the slice, pâte fermentée 72&nbsp;heures — à dévorer sur place, à emporter ou en livraison.</p>
       <div class="hero-ctas">
-        <a class="btn btn-creme" href="#menu" data-h style="--d:660ms">Voir le menu</a>
-        <a class="btn btn-ghost" href="#infos" data-h style="--d:740ms">Horaires &amp; accès</a>
+        <a class="btn btn-creme" href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener" data-h style="--d:660ms">Commander en ligne ↗</a>
+        <a class="btn btn-ghost" href="#menu" data-h style="--d:740ms">Voir le menu</a>
       </div>
       <a class="hero-where" data-h style="--d:820ms;text-decoration:none" href="https://maps.google.com/?q=Jimmy's+Pizza+4+All%C3%A9e+Commandant+Charcot+44000+Nantes" target="_blank" rel="noopener">
         <svg width="14" height="18" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 0C3.1 0 0 3.1 0 7c0 5.2 7 11 7 11s7-5.8 7-11c0-3.9-3.1-7-7-7Zm0 9.6A2.6 2.6 0 1 1 7 4.4a2.6 2.6 0 0 1 0 5.2Z" fill="currentColor"/></svg>
@@ -797,7 +800,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
         <span class="label rv">À la carte</span>
         <h2 class="groovy rv d1">Le menu</h2>
       </div>
-      <p class="note rv d1">Carte 06/26 — susceptible d'évoluer<br>selon saison &amp; arrivages</p>
+      <p class="note rv d1">Carte 10/26 — susceptible d'évoluer<br>selon saison &amp; arrivages</p>
     </div>
 
     <div class="menu-board rv">
@@ -810,105 +813,102 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
         <ul class="slices">
           <li class="sl">
             <div class="sl-head"><h4>Classic Cheese</h4><span class="lead"></span><span class="prix">4,10&nbsp;€</span></div>
-            <p>Sauce tomate, mozza fior di latte, origan, parmesan</p>
+            <p>Sauce tomate, mozza fior di latte, origan</p>
           </li>
           <li class="sl">
             <div class="sl-head"><h4>Pepperoni</h4><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
-            <p>Sauce tomate, mozza fior di latte, pepperoni signature Jimmy's, origan, parmesan</p>
+            <p>Sauce tomate, mozza fior di latte, pepperoni signature Jimmy's, origan</p>
           </li>
           <li class="sl">
             <div class="sl-head"><h4>White</h4><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
             <p>Mozza fior di latte, scamorza, champignons, persillade, ricotta citronnée, gomashio</p>
           </li>
           <li class="sl">
-            <div class="sl-head"><h4>Elote</h4><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
-            <p>Crema mexicana, maïs rôti, mozza fior di latte, feta, coriandre, oignons, tajín</p>
-          </li>
-          <li class="sl">
             <div class="sl-head"><h4>Wildside</h4><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
             <p>Sauce tomate, mozza fior di latte, scamorza, 'nduja, ricotta, vinaigre balsamique</p>
           </li>
           <li class="sl">
-            <div class="sl-head"><h4>La vie en Peach</h4><span class="tag-v">Vegan</span><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
-            <p>Sauce BBQ pêche &amp; cumin, oignons rouges &amp; pickles, aubergines rôties, fromage végétal maison</p>
+            <div class="sl-head"><h4>Pizza du moment</h4><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
+            <p>La recette change au fil des envies — elle vous attend au comptoir</p>
           </li>
           <li class="sl">
-            <div class="sl-head"><h4>Garbanzo Queen</h4><span class="tag-v">Vegan</span><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
-            <p>Base hummus, courgettes marinées, tomates séchées, olives, zaatar, fromage végétal maison</p>
+            <div class="sl-head"><h4>Pizza Vegan</h4><span class="tag-v">Vegan</span><span class="lead"></span><span class="prix">4,95&nbsp;€</span></div>
+            <p>La recette vegan du moment</p>
           </li>
-          <li class="sl sl-full">
-            <span class="label">Pour toute la tablée</span>
-            <h4>Full Pizza</h4>
-            <span class="fp-sub">8 slices · 3–4 personnes</span>
-            <div class="fp-prices">
-              <div><b>26&nbsp;€</b><span>Classic Cheese</span></div>
-              <div><b>29&nbsp;€</b><span>Autres recettes</span></div>
-            </div>
+          <li class="sl">
+            <div class="sl-head"><h4>Garbanzo Queen</h4><span class="tag-v sq">Square</span><span class="lead"></span><span class="prix">6,45&nbsp;€</span></div>
+            <p>Base hummus, courgettes marinées, tomates séchées, oignons pickles, zaatar, yaourt végétal à la menthe</p>
+          </li>
+          <li class="sl">
+            <div class="sl-head"><h4>Square Pizza</h4><span class="tag-v sq">Square</span><span class="lead"></span><span class="prix">6,95&nbsp;€</span></div>
+            <p>La pizza carrée, recette du moment</p>
           </li>
         </ul>
       </div>
 
       <div class="menu-cat">
-        <div class="cat-head"><h3 class="cat-title">Sides &amp; dips</h3></div>
+        <div class="cat-head"><h3 class="cat-title">Sides, dips &amp; desserts</h3></div>
         <div class="extras">
           <div class="ex">
             <h4>Garlic Knots</h4>
             <ul>
-              <li><div class="row"><span>3 knots + marinara</span><span class="lead"></span><b>4,50&nbsp;€</b></div><em>Pâte à pizza, origan, ail, huile d'olive</em></li>
+              <li><div class="row"><span>3 knots + marinara</span><span class="lead"></span><b>4,50&nbsp;€</b></div><em>Pâte à pizza, origan, ail, huile d'olive vierge extra</em></li>
               <li><div class="row"><span>À l'unité, sans sauce</span><span class="lead"></span><b>1,60&nbsp;€</b></div></li>
-            </ul>
-          </div>
-          <div class="ex">
-            <h4>Sandwich</h4>
-            <ul>
-              <li><div class="row"><span>Mortadella pistache</span><span class="lead"></span><b>6,50&nbsp;€</b></div><em>Pain cuit sur place — existe en version végé</em></li>
             </ul>
           </div>
           <div class="ex">
             <h4>Dips</h4>
             <ul>
               <li><div class="row"><span>Marinara</span><span class="lead"></span><b>1&nbsp;€</b></div></li>
+              <li><div class="row"><span>Ranch</span><span class="lead"></span><b>1&nbsp;€</b></div></li>
               <li><div class="row"><span>Hot Honey</span><span class="lead"></span><b>1&nbsp;€</b></div></li>
-              <li><div class="row"><span>Hot Sauce</span><span class="lead"></span><b>1&nbsp;€</b></div></li>
+            </ul>
+          </div>
+          <div class="ex">
+            <h4>Desserts</h4>
+            <ul>
+              <li><div class="row"><span>Ben &amp; Jerry's</span><span class="lead"></span><b>3,90&nbsp;€</b></div></li>
+              <li><div class="row"><span>Fat Cookie</span><span class="lead"></span><b>3,90&nbsp;€</b></div></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="menu-cat">
-        <div class="cat-head"><h3 class="cat-title">Desserts &amp; drinks</h3></div>
-        <div class="extras">
+        <div class="cat-head"><h3 class="cat-title">Drinks</h3></div>
+        <div class="extras extras--2">
           <div class="ex">
-            <h4>Desserts</h4>
-            <ul>
-              <li><div class="row"><span>Ben &amp; Jerry's</span><span class="lead"></span><b>3,90&nbsp;€</b></div></li>
-              <li><div class="row"><span>Cookie</span><span class="lead"></span><b>2,90&nbsp;€</b></div></li>
-            </ul>
-          </div>
-          <div class="ex">
-            <h4>Drinks <small>sur place</small></h4>
+            <h4>Softs &amp; café</h4>
             <ul>
               <li><div class="row"><span>Sodas</span><span class="lead"></span><b>3&nbsp;€</b></div></li>
-              <li><div class="row"><span>Eaux</span><span class="lead"></span><b>2–3&nbsp;€</b></div></li>
+              <li><div class="row"><span>Eau</span><span class="lead"></span><b>2–2,50&nbsp;€</b></div></li>
               <li><div class="row"><span>Café</span><span class="lead"></span><b>2&nbsp;€</b></div></li>
             </ul>
           </div>
           <div class="ex">
             <h4>&amp; pour trinquer</h4>
             <ul>
-              <li><div class="row"><span>Bières</span><span class="lead"></span><b>4,50–6&nbsp;€</b></div></li>
-              <li><div class="row"><span>Vin, au verre</span><span class="lead"></span><b>4&nbsp;€</b></div></li>
+              <li><div class="row"><span>Bière</span><span class="lead"></span><b>4,50–7,50&nbsp;€</b></div></li>
+              <li><div class="row"><span>Vin bio</span><span class="lead"></span><b>3,90–5,90&nbsp;€</b></div></li>
             </ul>
           </div>
         </div>
       </div>
 
+      <p class="menu-legal">
+        <span><b>Prix nets en euros TTC, service compris.</b> Carte indicative : celle affichée au comptoir fait foi.</span>
+        <span><b>Allergènes</b> — la présence des 14 allergènes réglementaires dans chaque recette est indiquée sur place, sur simple demande.</span>
+        <span><b>L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</b> Vente d'alcool interdite aux mineurs.</span>
+      </p>
+
     </div>
 
     <div class="menu-cta rv">
-      <a class="btn btn-creme" href="https://www.instagram.com/jimmyspizzanantes/" target="_blank" rel="noopener">Slices du jour sur Insta ↗</a>
-      <a class="btn btn-ghost" href="tel:+33625911065">Commander · 06 25 91 10 65</a>
+      <a class="btn btn-creme" href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener">À emporter · commander en ligne ↗</a>
+      <a class="btn btn-ghost" href="https://naofood.coopcycle.org/fr/restaurant/181-jimmy-s-pizza" target="_blank" rel="noopener">Livraison avec Naofood ↗</a>
+      <a class="btn btn-ghost" href="tel:+33625911065">Par téléphone · 06 25 91 10 65</a>
     </div>
+    <p class="menu-cta-note rv">La commande et le paiement se font sur la plateforme de commande de l'établissement (DISH) ou chez Naofood, coopérative de livraison nantaise. Leurs conditions générales et politiques de confidentialité s'appliquent. Aucun paiement n'est réalisé sur ce site.</p>
   </section>
 
   <div class="damier" aria-hidden="true"></div>
@@ -951,11 +951,11 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
         <div class="lb-rows" role="table" aria-label="Horaires d'ouverture">
           <div class="row lb-cols" role="row"><span role="columnheader"></span><span role="columnheader">Midi</span><span role="columnheader">Soir</span></div>
           <div class="row" role="row" data-day="1"><span role="cell">Lundi</span><span role="cell">12h–14h</span><span role="cell" class="off">—</span></div>
-          <div class="row" role="row" data-day="2"><span role="cell">Mardi</span><span role="cell">12h–14h</span><span role="cell">18h30–21h45</span></div>
-          <div class="row" role="row" data-day="3"><span role="cell">Mercredi</span><span role="cell">12h–14h</span><span role="cell">18h30–21h45</span></div>
-          <div class="row" role="row" data-day="4"><span role="cell">Jeudi</span><span role="cell">12h–14h</span><span role="cell">18h30–21h45</span></div>
-          <div class="row" role="row" data-day="5"><span role="cell">Vendredi</span><span role="cell">12h–14h</span><span role="cell">18h30–21h45</span></div>
-          <div class="row" role="row" data-day="6"><span role="cell">Samedi</span><span role="cell" class="off">—</span><span role="cell">18h30–21h45</span></div>
+          <div class="row" role="row" data-day="2"><span role="cell">Mardi</span><span role="cell">12h–14h</span><span role="cell">18h30–22h</span></div>
+          <div class="row" role="row" data-day="3"><span role="cell">Mercredi</span><span role="cell">12h–14h</span><span role="cell">18h30–22h</span></div>
+          <div class="row" role="row" data-day="4"><span role="cell">Jeudi</span><span role="cell">12h–14h</span><span role="cell">18h30–22h</span></div>
+          <div class="row" role="row" data-day="5"><span role="cell">Vendredi</span><span role="cell">12h–14h</span><span role="cell">18h30–22h</span></div>
+          <div class="row" role="row" data-day="6"><span role="cell">Samedi</span><span role="cell" class="off">—</span><span role="cell">18h30–22h</span></div>
           <div class="row" role="row" data-day="0"><span role="cell">Dimanche</span><span role="cell" class="off">—</span><span role="cell" class="ferme">Fermé</span></div>
         </div>
         <p class="lb-status" id="lbStatus" aria-live="polite"></p>
@@ -977,6 +977,10 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
             <span class="v"><a href="mailto:yannick@jimmyspizza.fr">yannick@jimmyspizza.fr</a></span>
           </div>
           <div class="info-item">
+            <span class="k">Commander</span>
+            <span class="v">À emporter : <a href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener">commande en ligne</a>, retrait sur place<br>Livraison : <a href="https://naofood.coopcycle.org/fr/restaurant/181-jimmy-s-pizza" target="_blank" rel="noopener">Naofood</a></span>
+          </div>
+          <div class="info-item">
             <span class="k">Instagram</span>
             <span class="v"><a href="https://www.instagram.com/jimmyspizzanantes/" target="_blank" rel="noopener">@jimmyspizzanantes</a></span>
           </div>
@@ -989,7 +993,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
           <span class="chip">Wi-Fi gratuit</span>
           <span class="chip">Accès PMR</span>
           <span class="chip">Animaux bienvenus</span>
-          <span class="chip">CB · Apple Pay · Tickets resto</span>
+          <span class="chip">Espèces · CB · Sans contact · Titres-restaurant</span>
         </div>
       </div>
     </div>
@@ -1012,13 +1016,17 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 Jimmy's Pizza — Nantes · <a href="mentions.html">Mentions légales</a></span>
-    <span>Fast service, great food ★</span>
+    <span>© 2026 Jimmy's Pizza. Tous droits réservés.</span>
+    <span class="legal"><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a></span>
     <a class="credit" href="https://vokumagency.com" target="_blank" rel="noopener">Création Vokum ↗</a>
   </div>
 </footer>
 
 <nav class="dock" aria-label="Actions rapides">
+  <a href="https://jimmys-pizza-nantes.order.app.hd.digital" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 13H7L6 8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10V6a3 3 0 0 1 6 0v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    Commander
+  </a>
   <a href="tel:+33625911065">
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" fill="currentColor"/></svg>
     Appeler
@@ -1026,10 +1034,6 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
   <a href="https://maps.google.com/?q=Jimmy's+Pizza+4+All%C3%A9e+Commandant+Charcot+44000+Nantes" target="_blank" rel="noopener">
     <svg width="16" height="20" viewBox="0 0 14 18" aria-hidden="true"><path d="M7 0C3.1 0 0 3.1 0 7c0 5.2 7 11 7 11s7-5.8 7-11c0-3.9-3.1-7-7-7Zm0 9.6A2.6 2.6 0 1 1 7 4.4a2.6 2.6 0 0 1 0 5.2Z" fill="currentColor"/></svg>
     Itinéraire
-  </a>
-  <a href="#menu">
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 5.2C5.4 3.8 8.6 3 12 3s6.6.8 9.5 2.2L12 22 2.5 5.2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="10" cy="9" r="1.6" fill="currentColor"/><circle cx="14.2" cy="12.4" r="1.4" fill="currentColor"/><circle cx="11.4" cy="15.6" r="1.2" fill="currentColor"/></svg>
-    Menu
   </a>
 </nav>
 
@@ -1145,7 +1149,7 @@ footer{background:var(--encre);color:var(--creme);padding:5rem 5vw 2.5rem;positi
 
 /* Horaires — à garder synchronisés avec le tableau et le JSON-LD (minutes depuis minuit, heure de Paris) */
 (function(){
-  const H={0:[],1:[[720,840]],2:[[720,840],[1110,1305]],3:[[720,840],[1110,1305]],4:[[720,840],[1110,1305]],5:[[720,840],[1110,1305]],6:[[1110,1305]]};
+  const H={0:[],1:[[720,840]],2:[[720,840],[1110,1320]],3:[[720,840],[1110,1320]],4:[[720,840],[1110,1320]],5:[[720,840],[1110,1320]],6:[[1110,1320]]};
   const DAYS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
   const fmt=m=>Math.floor(m/60)+'h'+(m%60?String(m%60).padStart(2,'0'):'');
   let day,min;

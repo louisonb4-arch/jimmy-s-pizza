@@ -1,0 +1,117 @@
+/* Pages légales — mêmes tokens que le site, rendu sobre */
+:root{
+  --tomate:#E8451F;
+  --creme:#F3EAD5;
+  --creme-2:#EDE2C8;
+  --encre:#1C1510;
+  --menthe:#8FCDC0;
+  --grid:rgba(28,21,16,.08);
+  --rule:rgba(28,21,16,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  font-family:'Fraunces',serif;
+  background:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    var(--creme);
+  background-size:28px 28px,28px 28px,auto;
+  color:var(--encre);
+  line-height:1.6;
+}
+a{color:inherit}
+::selection{background:var(--tomate);color:var(--creme)}
+:focus-visible{outline:3px solid var(--menthe);outline-offset:3px}
+.groovy{font-family:'Corben',serif;font-weight:700;letter-spacing:-.01em;line-height:1.04}
+.label{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+
+header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:10px 28px;
+  background:var(--tomate);color:var(--creme);
+  border-bottom:3px solid var(--encre);
+}
+.logo-wrap{display:block;width:70px;text-decoration:none}
+.mark{
+  display:block;aspect-ratio:900/645;background:currentColor;
+  -webkit-mask:url(logo-mark.png) center/contain no-repeat;
+          mask:url(logo-mark.png) center/contain no-repeat;
+}
+.back{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.85rem;
+  text-decoration:none;letter-spacing:.04em;white-space:nowrap;
+  background:var(--creme);color:var(--tomate);
+  padding:.55rem 1.1rem;border-radius:999px;border:2px solid var(--encre);
+  box-shadow:3px 3px 0 var(--encre);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.back:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--encre)}
+
+main{max-width:840px;margin:0 auto;padding:140px 6vw 5rem}
+.kicker{color:var(--tomate)}
+h1.groovy{font-size:clamp(2.2rem,5.2vw,3.6rem);color:var(--tomate);margin:.8rem 0 1.2rem;text-wrap:balance}
+.lead{font-size:1.06rem;max-width:40rem;margin-bottom:1rem}
+.updated{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:2.4rem}
+.toc{
+  display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.4rem;
+  font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+}
+.toc a{text-decoration:none;border:1.5px solid var(--encre);border-radius:999px;padding:.35rem .85rem;background:var(--creme);transition:background-color .2s}
+.toc a:hover{background:var(--menthe)}
+
+section{
+  background:rgba(255,255,255,.6);
+  border:2px solid var(--encre);border-radius:18px;
+  padding:1.6rem 1.8rem 1.7rem;
+  margin-bottom:1.3rem;
+}
+h2{font-family:'Corben',serif;font-weight:700;font-size:1.32rem;line-height:1.2;margin-bottom:.9rem;color:var(--tomate)}
+h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin:1.3rem 0 .5rem}
+p{margin-bottom:.75rem;font-size:.98rem;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+ul.list{margin:.2rem 0 .9rem 1.1rem;font-size:.98rem}
+ul.list li{margin-bottom:.35rem}
+section a{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
+strong{font-weight:700}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;background:rgba(28,21,16,.07);padding:.08em .35em;border-radius:4px}
+
+/* fiche d'identité */
+dl.facts{display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;margin:.2rem 0 1rem}
+dl.facts dt,dl.facts dd{padding:.55rem 0;border-bottom:1px dashed var(--rule)}
+dl.facts dt{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tomate);padding-right:1rem;padding-top:.75rem}
+dl.facts dd{font-size:.98rem}
+dl.facts dt:last-of-type,dl.facts dd:last-of-type{border-bottom:none}
+.source{font-size:.86rem;opacity:.75}
+
+/* information manquante : doit se voir, pas se deviner */
+.todo{
+  background:#FFD9E4;color:#8A1538;
+  border:1.5px dashed #C2185B;border-radius:6px;
+  padding:.05em .4em;font-family:'Space Grotesk',sans-serif;font-size:.86em;font-weight:500;
+}
+.note-todo{
+  border:2px dashed #C2185B;background:#FFF0F4;border-radius:14px;
+  padding:1rem 1.2rem;margin-bottom:1.6rem;font-size:.92rem;
+}
+
+footer{background:var(--encre);color:var(--creme);padding:2rem 5vw;margin-top:3rem}
+.foot-bottom{
+  max-width:1200px;margin:0 auto;
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-family:'Space Grotesk',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;
+}
+.foot-bottom a{text-decoration:none}
+.foot-bottom a:hover{color:var(--menthe)}
+.foot-bottom a[aria-current]{text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:640px){
+  header{padding:8px 18px}
+  .logo-wrap{width:58px}
+  .back{font-size:.76rem;padding:.48rem .9rem}
+  main{padding-top:112px}
+  section{padding:1.3rem 1.15rem 1.4rem;border-radius:14px}
+  dl.facts{grid-template-columns:1fr}
+  dl.facts dt{border-bottom:none;padding-bottom:0}
+}
